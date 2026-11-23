@@ -792,3 +792,89 @@ section { scroll-margin-top: 84px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* ---------- halaman dalam: head + nav aktif ---------- */
+.page-head { padding: 48px 0 32px; background: var(--white); }
+.page-head h1 { font-size: clamp(2.25rem, 5vw, 3.25rem); }
+.page-head p { margin-top: 12px; color: var(--ink-soft); font-size: 1.125rem; }
+.site-nav a[aria-current="page"] { background: var(--card); }
+
+/* ---------- galeri: grid foto ---------- */
+.galeri-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.galeri-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--card);
+}
+.galeri-item img { width: 100%; height: 100%; object-fit: cover; }
+.galeri-item figcaption {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  font: 800 0.875rem/1.2 var(--font-display);
+}
+.galeri-item.is-missing figcaption { display: none; }
+.galeri-note { margin-top: 24px; color: var(--ink-soft); font-size: 0.9375rem; }
+
+/* ---------- harga: daftar baris ---------- */
+.harga-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.harga-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.harga-row h3 { font-size: 1.25rem; }
+.harga-row p { margin-top: 4px; color: var(--ink-soft); font-size: 0.9375rem; }
+.harga-row__price {
+  flex: 0 0 auto;
+  font: 800 1.25rem/1.2 var(--font-display);
+  color: var(--accent);
+  text-align: right;
+}
+.harga-row__ask { flex: 0 0 auto; font: 800 0.9375rem/1.4 var(--font-display); }
+.harga-note { margin-top: 24px; color: var(--ink-soft); font-size: 0.9375rem; }
+
+/* ---------- kutip besar di halaman dalam ---------- */
+.quote-band { text-align: center; }
+.quote-band .section-head { margin-inline: auto; text-align: center; }
+.quote-band .section-head p { margin-inline: auto; }
+.quote-band blockquote {
+  margin: 0 auto;
+  max-width: 720px;
+  font: 800 clamp(1.25rem, 2.6vw, 1.625rem)/1.4 var(--font-display);
+  letter-spacing: -0.01em;
+}
+.quote-band cite {
+  display: block;
+  margin-top: 16px;
+  font: 700 0.9375rem/1.5 var(--font-body);
+  font-style: normal;
+  color: var(--ink-soft);
+}
+
+/* ---------- responsif halaman dalam ---------- */
+@media (max-width: 1024px) {
+  .galeri-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .page-head { padding: 32px 0 24px; }
+  .galeri-grid { grid-template-columns: 1fr; }
+  .harga-row { flex-direction: column; gap: 4px; }
+  .harga-row__price, .harga-row__ask { text-align: left; }
+}
