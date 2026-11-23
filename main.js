@@ -582,10 +582,39 @@
     });
   }
 
+  function initLayananAccordion() {
+    document.querySelectorAll(".layanan-accordion").forEach(function (list) {
+      var items = Array.prototype.slice.call(list.querySelectorAll(".layanan-acc"));
+      function setOpen(item, open) {
+        item.setAttribute("data-open", String(open));
+        var b = item.querySelector(".layanan-acc__row");
+        if (b) b.setAttribute("aria-expanded", String(open));
+      }
+      items.forEach(function (item) {
+        var btn = item.querySelector(".layanan-acc__row");
+        if (!btn) return;
+        btn.addEventListener("click", function () {
+          var open = item.getAttribute("data-open") === "true";
+          items.forEach(function (other) { setOpen(other, false); });
+          setOpen(item, !open);
+        });
+      });
+      var hash = window.location.hash.slice(1);
+      if (hash) {
+        var target = document.getElementById(hash);
+        if (target && target.classList.contains("layanan-acc")) {
+          items.forEach(function (other) { setOpen(other, false); });
+          setOpen(target, true);
+        }
+      }
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initImageFallbacks();
     initNav();
     initFaq();
+    initLayananAccordion();
     var orbital = document.querySelector(".velox-orbital-cards");
     if (orbital) {
       try {

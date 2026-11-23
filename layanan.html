@@ -48,45 +48,180 @@
 <!-- Daftar layanan -->
 <section class="section section--white" id="layanan">
   <div class="container">
-    <ul class="layanan-grid">
-      <li class="layanan-card" id="psa">
-        <h3>Perawatan Saluran Akar (PSA)</h3>
-        <p>Perawatan saluran akar justru membantu menghilangkan infeksi dan mempertahankan gigi asli kamu. Lebih nyaman, lebih aman, dan tentunya lebih baik daripada kehilangan gigi. Di balik setiap rumitnya perawatan saluran akar, ada harapan untuk mempertahankan gigi yang masih bisa diselamatkan.</p>
+        <ul class="layanan-accordion">
+      <li class="layanan-acc" id="psa" data-open="true">
+        <button class="layanan-acc__row" type="button" aria-expanded="true">
+          <span>Perawatan Saluran Akar (PSA)</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-psa.jpg" alt="Perawatan saluran akar di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Perawatan Saluran Akar</span>
+              </div>
+              <h3>Perawatan Saluran Akar (PSA)</h3>
+              <p>Perawatan saluran akar justru membantu menghilangkan infeksi dan mempertahankan gigi asli kamu. Lebih nyaman, lebih aman, dan tentunya lebih baik daripada kehilangan gigi. Di balik setiap rumitnya perawatan saluran akar, ada harapan untuk mempertahankan gigi yang masih bisa diselamatkan.</p>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
-      <li class="layanan-card" id="tambal">
-        <h3>Tambal Gigi</h3>
-        <p>Tambal estetik yang hampir tidak kelihatan. Lubang gigi masih kecil dan belum sakit? Justru ini waktu yang baik untuk diperiksa, jangan tunggu sakit dulu baru ke dokter gigi.</p>
+      <li class="layanan-acc" id="tambal" data-open="false">
+        <button class="layanan-acc__row" type="button" aria-expanded="false">
+          <span>Tambal Gigi</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-tambal.jpg" alt="Tambal gigi di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Tambal Gigi</span>
+              </div>
+              <h3>Tambal Gigi</h3>
+              <p>Tambal estetik yang hampir tidak kelihatan. Lubang gigi masih kecil dan belum sakit? Justru ini waktu yang baik untuk diperiksa, jangan tunggu sakit dulu baru ke dokter gigi.</p>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
-      <li class="layanan-card" id="scaling">
-        <h3>Scaling</h3>
-        <p>Scaling berfungsi membersihkan karang gigi dan plak yang menumpuk, bukan memutihkan warna asli gigi. Tapi setelah karang gigi bersih, senyum memang bisa terlihat lebih bersih dan fresh.</p>
-        <span class="layanan-card__price">Mulai Rp300.000</span>
+      <li class="layanan-acc" id="scaling" data-open="false">
+        <button class="layanan-acc__row" type="button" aria-expanded="false">
+          <span>Scaling</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-scaling.jpg" alt="Scaling di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Scaling</span>
+              </div>
+              <h3>Scaling</h3>
+              <p>Scaling berfungsi membersihkan karang gigi dan plak yang menumpuk, bukan memutihkan warna asli gigi. Tapi setelah karang gigi bersih, senyum memang bisa terlihat lebih bersih dan fresh.</p>
+              <span class="layanan-acc__price">Mulai Rp300.000</span>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
-      <li class="layanan-card" id="bedah">
-        <h3>Bedah Gigi Bungsu</h3>
-        <p>Bedah gigi bungsu dengan dokter SpBM. Tanya dulu lewat WhatsApp untuk kondisi gigimu.</p>
-        <span class="layanan-card__price">Mulai Rp900.000</span>
+      <li class="layanan-acc" id="bedah" data-open="false">
+        <button class="layanan-acc__row" type="button" aria-expanded="false">
+          <span>Bedah Gigi Bungsu</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-bedah.jpg" alt="Bedah gigi bungsu di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Bedah Gigi Bungsu</span>
+              </div>
+              <h3>Bedah Gigi Bungsu</h3>
+              <p>Bedah gigi bungsu dengan dokter SpBM. Tanya dulu lewat WhatsApp untuk kondisi gigimu.</p>
+              <span class="layanan-acc__price">Mulai Rp900.000</span>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
-      <li class="layanan-card" id="veneer">
-        <h3>Veneer dan Smile Design</h3>
-        <p>Veneer bukan sekadar membuat gigi terlihat lebih putih. Veneer dapat menjadi salah satu pilihan untuk memperbaiki warna, bentuk, ukuran, maupun proporsi gigi sehingga senyum terlihat lebih harmonis. Transform your smile, naturally.</p>
+      <li class="layanan-acc" id="veneer" data-open="false">
+        <button class="layanan-acc__row" type="button" aria-expanded="false">
+          <span>Veneer dan Smile Design</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-veneer.jpg" alt="Veneer dan smile design di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Veneer dan Smile Design</span>
+              </div>
+              <h3>Veneer dan Smile Design</h3>
+              <p>Veneer bukan sekadar membuat gigi terlihat lebih putih. Veneer dapat menjadi salah satu pilihan untuk memperbaiki warna, bentuk, ukuran, maupun proporsi gigi sehingga senyum terlihat lebih harmonis. Transform your smile, naturally.</p>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
-      <li class="layanan-card" id="whitening">
-        <h3>Whitening</h3>
-        <p>Tujuan whitening yang baik adalah mengembalikan kecerahan alami gigi, bukan membuatnya terlihat berlebihan. Perawatan whitening dilakukan secara profesional dengan prosedur yang aman, sehingga hasilnya lebih cerah dan tetap terlihat natural.</p>
+      <li class="layanan-acc" id="whitening" data-open="false">
+        <button class="layanan-acc__row" type="button" aria-expanded="false">
+          <span>Whitening</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-whitening.jpg" alt="Whitening di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Whitening</span>
+              </div>
+              <h3>Whitening</h3>
+              <p>Tujuan whitening yang baik adalah mengembalikan kecerahan alami gigi, bukan membuatnya terlihat berlebihan. Perawatan whitening dilakukan secara profesional dengan prosedur yang aman, sehingga hasilnya lebih cerah dan tetap terlihat natural.</p>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
-      <li class="layanan-card" id="behel">
-        <h3>Behel dan Clear Aligner</h3>
-        <p>Behel atau clear aligner? Sama-sama untuk merapikan gigi, tapi punya keunggulan dan indikasi yang berbeda. Yang paling cocok? Tergantung kondisi gigi dan kebutuhan kamu.</p>
+      <li class="layanan-acc" id="behel" data-open="false">
+        <button class="layanan-acc__row" type="button" aria-expanded="false">
+          <span>Behel dan Clear Aligner</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-behel.jpg" alt="Behel dan clear aligner di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Behel dan Clear Aligner</span>
+              </div>
+              <h3>Behel dan Clear Aligner</h3>
+              <p>Behel atau clear aligner? Sama-sama untuk merapikan gigi, tapi punya keunggulan dan indikasi yang berbeda. Yang paling cocok? Tergantung kondisi gigi dan kebutuhan kamu.</p>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
-      <li class="layanan-card" id="anak">
-        <h3>Perawatan Gigi Anak</h3>
-        <p>Perawatan gigi anak di Kids Dental Care, dengan pendekatan yang personal dan nyaman. Karena merawat senyum seharusnya nggak perlu bikin takut.</p>
+      <li class="layanan-acc" id="anak" data-open="false">
+        <button class="layanan-acc__row" type="button" aria-expanded="false">
+          <span>Perawatan Gigi Anak</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-anak.jpg" alt="Perawatan gigi anak di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Perawatan Gigi Anak</span>
+              </div>
+              <h3>Perawatan Gigi Anak</h3>
+              <p>Perawatan gigi anak di Kids Dental Care, dengan pendekatan yang personal dan nyaman. Karena merawat senyum seharusnya nggak perlu bikin takut.</p>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
-      <li class="layanan-card" id="imunisasi">
-        <h3>Imunisasi Gigi Anak</h3>
-        <p>Imunisasi gigi anak di Kids Dental Care.</p>
-        <span class="layanan-card__price">Rp350.000</span>
+      <li class="layanan-acc" id="imunisasi" data-open="false">
+        <button class="layanan-acc__row" type="button" aria-expanded="false">
+          <span>Imunisasi Gigi Anak</span>
+          <span class="layanan-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="layanan-acc__detail">
+          <div class="layanan-acc__inner">
+            <div class="layanan-acc__card">
+              <div class="layanan-acc__media" data-media>
+                <img src="assets/layanan-imunisasi.jpg" alt="Imunisasi gigi anak di Folia Dental Studio" data-img-fallback loading="lazy">
+                <span class="media-fallback">Imunisasi Gigi Anak</span>
+              </div>
+              <h3>Imunisasi Gigi Anak</h3>
+              <p>Imunisasi gigi anak di Kids Dental Care.</p>
+              <span class="layanan-acc__price">Rp350.000</span>
+              <a class="btn" href="promo.html">Ambil Promo</a>
+            </div>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
