@@ -267,7 +267,7 @@
     }
 
     function update() {
-      var next = (hovered || focused) && !button.disabled;
+      var next = (hovered || focused || auto) && !button.disabled;
       if (next === active) return;
       active = next;
       win.clearTimeout(timer);
@@ -294,6 +294,9 @@
     function dispose() {
       disposed = true;
       win.clearTimeout(timer);
+      win.clearTimeout(autoTimer);
+      win.clearTimeout(autoCycle);
+      if (observer) observer.disconnect();
       abort.abort();
       anims.forEach(function (channels) { channels.forEach(function (a) { a.cancel(); }); });
       anims.clear();
@@ -329,6 +332,26 @@
         circles(left + 25, left + 49, true, false);
         hoverLabel.style.transform = "translate(" + (left + 82) + "px, -50%)";
       });
+      /* Putar otomatis: di HP tidak ada hover, jadi tombol terlihat diam.
+         Setiap beberapa detik, putar sekali koreografinya, selama tombol
+         terlihat di layar, tab sedang aktif, pengguna tidak sedang
+         hover/fokus, dan pengguna tidak memilih kurangi gerakan. */
+      var auto = false, autoTimer = 0, autoCycle = 0, inView = true, observer = null;
+      if ("IntersectionObserver" in win) {
+        observer = new win.IntersectionObserver(function (entries) {
+          inView = !!(entries[0] && entries[0].isIntersecting);
+        }, { threshold: 0.2 });
+        observer.observe(button);
+      }
+      var autoTick = function () {
+        autoCycle = 0;
+        if (!disposed && !reduced.matches && inView && !win.document.hidden && !hovered && !focused && !active) {
+          auto = true; update();
+          autoTimer = win.setTimeout(function () { auto = false; update(); }, 1900);
+        }
+        if (!disposed) autoCycle = win.setTimeout(autoTick, 5000);
+      };
+      autoCycle = win.setTimeout(autoTick, 1500);
       update();
     } catch (error) {
       dispose();
