@@ -455,6 +455,24 @@ section { scroll-margin-top: 84px; }
 .promo-kenapa__body { padding: 24px; }
 .promo-banner__cta { display: flex; justify-content: center; margin-top: 24px; }
 
+/* ---------- tombol WA melayang ---------- */
+.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 1000; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #25d366; color: #fff; box-shadow: 0 8px 20px -6px rgba(37, 211, 102, 0.55), 0 4px 8px -4px rgba(100, 74, 7, 0.35); text-decoration: none; }
+.wa-float svg { display: block; width: 30px; height: 30px; }
+.wa-float::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(37, 211, 102, 0.7); animation: wa-float-pulse 2.4s ease-out infinite; pointer-events: none; }
+@keyframes wa-float-pulse { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
+html.has-nl-badge .wa-float { bottom: 108px; }
+@media (prefers-reduced-motion: reduce) { .wa-float::after { animation: none; } }
+
+/* ---------- lightbox foto ---------- */
+.is-zoomable { cursor: zoom-in; }
+.lightbox { position: fixed; inset: 0; z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; margin: 0; background: rgba(38, 24, 8, 0.92); opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s; }
+.lightbox--open { opacity: 1; visibility: visible; }
+.lightbox img { max-width: min(92vw, 900px); max-height: 78vh; width: auto; height: auto; border-radius: 16px; box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.5); transform: scale(0.96); transition: transform 0.25s ease; }
+.lightbox--open img { transform: scale(1); }
+.lightbox figcaption { color: #fff; font-size: 0.9375rem; text-align: center; max-width: min(92vw, 900px); }
+.lightbox__close { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.15); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .lightbox, .lightbox img { transition: none; } }
+
 /* ---------- fasilitas: strip 2 kolom ---------- */
 .fasilitas-list {
   display: grid;

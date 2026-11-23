@@ -633,8 +633,82 @@
     });
   }
 
+  /* ---------- Tombol WA melayang: naik bila badge Netlify ada ----------
+     Badge "Powered by Netlify" (iframe #nl-badge-frame, 92px, kanan bawah)
+     adalah bagian dari paket gratis Netlify dan tidak bisa disembunyikan
+     lewat pengaturan; tombol WA digeser ke atasnya supaya tidak tertutup.
+     Di Hostinger (tanpa badge) tombol kembali ke posisi standar. */
+  function initWaFloatOffset() {
+    var root = document.documentElement;
+    var check = function () {
+      var badge = document.getElementById("nl-badge-frame") || document.getElementById("nl-hud-frame");
+      root.classList.toggle("has-nl-badge", !!badge);
+    };
+    check();
+    if ("MutationObserver" in window) {
+      var observer = new MutationObserver(check);
+      observer.observe(root, { childList: true, subtree: true });
+      setTimeout(function () { observer.disconnect(); }, 15000);
+    } else {
+      setTimeout(check, 2000);
+    }
+  }
+
+  /* ---------- Lightbox: klik foto untuk membesar ----------
+     Semua img[data-img-fallback] yang bukan di dalam link bisa diklik.
+     Abaikan klik setelah geser (drag carousel / scroll) supaya tidak
+     terbuka tanpa sengaja. Tutup dengan klik latar, tombol silang, atau Esc. */
+  function initLightbox() {
+    var doc = document;
+    var box = doc.createElement("figure");
+    box.className = "lightbox";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-label", "Foto diperbesar");
+    box.innerHTML = '<button class="lightbox__close" type="button" aria-label="Tutup">\u00d7</button><img alt=""><figcaption></figcaption>';
+    doc.body.appendChild(box);
+    var img = box.querySelector("img");
+    var cap = box.querySelector("figcaption");
+    var closeBtn = box.querySelector(".lightbox__close");
+    var lastFocus = null;
+    var downX = 0, downY = 0;
+    function open(src, alt) {
+      lastFocus = doc.activeElement;
+      img.src = src;
+      img.alt = alt || "";
+      cap.textContent = alt || "";
+      cap.style.display = alt ? "" : "none";
+      box.classList.add("lightbox--open");
+      doc.body.style.overflow = "hidden";
+      closeBtn.focus();
+    }
+    function close() {
+      if (!box.classList.contains("lightbox--open")) return;
+      box.classList.remove("lightbox--open");
+      doc.body.style.overflow = "";
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    doc.addEventListener("pointerdown", function (e) {
+      var t = e.target && e.target.closest ? e.target.closest("img[data-img-fallback]") : null;
+      if (t && !t.closest("a")) { downX = e.clientX; downY = e.clientY; }
+    }, true);
+    doc.addEventListener("click", function (e) {
+      var t = e.target && e.target.closest ? e.target.closest("img[data-img-fallback]") : null;
+      if (!t || t.closest("a")) return;
+      if (Math.abs(e.clientX - downX) > 10 || Math.abs(e.clientY - downY) > 10) return;
+      e.preventDefault();
+      open(t.currentSrc || t.src, t.alt);
+    });
+    box.addEventListener("click", function (e) { if (e.target === box || e.target === closeBtn) close(); });
+    doc.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    doc.querySelectorAll("img[data-img-fallback]").forEach(function (el) {
+      if (!el.closest("a")) el.classList.add("is-zoomable");
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initImageFallbacks();
+    initWaFloatOffset();
+    initLightbox();
     initNav();
     initFaq();
     initLayananAccordion();
