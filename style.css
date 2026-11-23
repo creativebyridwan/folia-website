@@ -393,35 +393,110 @@ section { scroll-margin-top: 84px; }
 .cta-mid .section-head p { margin-inline: auto; }
 .cta-mid .arjuna-button { margin-top: 8px; }
 
-/* ---------- testimoni: editorial ---------- */
-.testimoni-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+/* ---------- testimoni: carousel ulasan Google ---------- */
+.testi-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 24px;
+}
+.testi-google { flex: 0 0 auto; width: 40px; height: 40px; }
+.testi-google svg { display: block; width: 40px; height: 40px; }
+.testi-stars { color: #fbbc05; letter-spacing: 0.08em; }
+.testi-head .testi-stars { font-size: 1.25rem; }
+.testi-score { font: 800 2rem/1 var(--font-display); letter-spacing: -0.025em; }
+.testi-count { font: 700 1rem/1.5 var(--font-body); color: var(--ink-soft); }
+.testi-carousel { position: relative; }
+.testi-viewport { overflow: hidden; }
+.testi-track {
+  display: flex;
   gap: 16px;
-  align-items: stretch;
-}
-.testimoni-quote {
-  padding: 32px;
-  border-radius: var(--radius-card);
-  background: var(--card);
-}
-.testimoni-quote blockquote {
   margin: 0;
-  font: 800 clamp(1.25rem, 2.6vw, 1.625rem)/1.4 var(--font-display);
-  letter-spacing: -0.01em;
+  padding: 4px 2px 8px;
+  list-style: none;
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-.testimoni-quote cite {
-  display: block;
+.testi-slide { flex: 0 0 84%; min-width: 0; }
+.testi-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--white);
+}
+.testi-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.testi-card .testi-stars { font-size: 1.125rem; }
+.testi-avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--white);
+  font: 800 1rem/1 var(--font-display);
+}
+.testi-card blockquote {
+  margin: 0;
+  flex: 1;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.testi-card figcaption { margin-top: 16px; }
+.testi-card figcaption strong { display: block; font: 800 1rem/1.4 var(--font-display); }
+.testi-card figcaption span { font-size: 0.875rem; color: var(--ink-soft); }
+.testi-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   margin-top: 16px;
-  font: 700 0.9375rem/1.5 var(--font-body);
-  font-style: normal;
-  color: var(--ink-soft);
 }
+.testi-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease;
+}
+.testi-arrow:hover { background: var(--card); }
+.testi-arrow:active { transform: scale(0.97); }
+.testi-dots { display: flex; gap: 8px; }
+.testi-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--line);
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, width 160ms ease;
+}
+.testi-dots button[aria-current="true"] { width: 24px; background: var(--accent); }
+.testi-cta { margin: 24px auto 0; text-align: center; }
 .testimoni-video {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 12px;
+  margin-top: 24px;
   padding: 32px;
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
@@ -433,7 +508,6 @@ section { scroll-margin-top: 84px; }
 .testimoni-video h3 { font-size: 1.25rem; }
 .testimoni-video p { color: var(--ink-soft); font-size: 0.9375rem; }
 .testimoni-video__link { font: 800 0.9375rem/1.2 var(--font-display); color: var(--ink); }
-.testimoni-note { margin-top: 24px; font: 800 1rem/1.5 var(--font-display); }
 
 /* ---------- galeri: WaveCarousel ---------- */
 .velox-wave-carousel {
@@ -608,7 +682,7 @@ section { scroll-margin-top: 84px; }
 .faq-answer__inner { overflow: hidden; }
 .faq-answer p { padding-bottom: 24px; color: var(--ink-soft); }
 
-/* ---------- dokter: profil duo ---------- */
+/* ---------- dokter: kartu lingkaran ala KL Klinik, palet Folia ---------- */
 .dokter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .dokter-card {
   border: 1px solid var(--line);
@@ -616,16 +690,74 @@ section { scroll-margin-top: 84px; }
   overflow: hidden;
   background: var(--white);
 }
-.dokter-photo {
+.dokter-ring-wrap {
   position: relative;
-  aspect-ratio: 4 / 5;
-  background: var(--card);
+  padding: 32px 24px 24px;
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 18v20M18 28h20' stroke='%23B76E79' stroke-opacity='0.16' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 56px 56px;
+  text-align: center;
 }
-.dokter-photo img { width: 100%; height: 100%; object-fit: cover; }
-.dokter-body { padding: 24px; }
-.dokter-body h3 { font-size: 1.375rem; margin-bottom: 4px; }
-.dokter-body__role { font: 800 0.875rem/1.4 var(--font-body); color: var(--ink); }
-.dokter-body p { margin-top: 8px; color: var(--ink-soft); font-size: 0.9375rem; }
+.dokter-ring {
+  position: relative;
+  width: min(240px, 68%);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+.dokter-ring::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 8px solid var(--card);
+  border-top-color: var(--accent);
+  border-right-color: var(--accent);
+}
+.dokter-ring__dot {
+  position: absolute;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.dokter-ring__dot--start { left: -4px; top: 14%; }
+.dokter-ring__dot--end { right: -4px; bottom: 14%; }
+.dokter-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.dokter-ring .media-fallback { border-radius: 50%; }
+.dokter-panel {
+  padding: 24px;
+  background: var(--ink);
+  color: var(--white);
+  text-align: center;
+}
+.dokter-panel__icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--white);
+}
+.dokter-panel__icon svg { width: 30px; height: 30px; }
+.dokter-panel__role {
+  display: block;
+  font: 800 0.875rem/1.4 var(--font-body);
+  color: var(--bg);
+}
+.dokter-panel h3 { margin-top: 4px; font-size: 1.375rem; color: var(--white); }
+.dokter-panel p { margin: 8px auto 0; color: rgba(255, 255, 255, 0.85); font-size: 0.9375rem; }
 
 /* ---------- lokasi: info + peta ---------- */
 .lokasi-grid {
@@ -784,7 +916,9 @@ section { scroll-margin-top: 84px; }
   .container { padding-inline: 16px; }
   .section { padding: 48px 0; }
   .hero { padding: 48px 0; }
-  .layanan-grid, .fasilitas-list, .dokter-grid, .testimoni-grid { grid-template-columns: 1fr; }
+  .layanan-grid, .fasilitas-list, .dokter-grid { grid-template-columns: 1fr; }
+  .testi-slide { flex-basis: 88%; }
+  .testi-card { padding: 24px; }
   .arjuna-button { --arjuna-pill-width: min(280px, calc(100vw - 56px)); }
 }
 

@@ -502,6 +502,56 @@
     return dispose;
   }
 
+  /* ---------- carousel testimoni: autoplay ke kanan, jeda saat disentuh ---------- */
+  function initTestiCarousel(root) {
+    var win = root.ownerDocument.defaultView;
+    var track = root.querySelector(".testi-track");
+    var slides = Array.prototype.slice.call(root.querySelectorAll(".testi-slide"));
+    var dots = Array.prototype.slice.call(root.querySelectorAll(".testi-dots button"));
+    var prev = root.querySelector('[data-dir="-1"]');
+    var next = root.querySelector('[data-dir="1"]');
+    var count = slides.length;
+    if (!track || count < 2) return function () {};
+    var reduced = win.matchMedia("(prefers-reduced-motion: reduce)");
+    var index = 0, timer = 0, paused = false;
+    var go = function (i) {
+      index = ((i % count) + count) % count;
+      track.style.transform = "translateX(-" + slides[index].offsetLeft + "px)";
+      slides.forEach(function (s, j) {
+        if (j === index) s.setAttribute("aria-current", "true");
+        else s.removeAttribute("aria-current");
+      });
+      dots.forEach(function (d, j) {
+        if (j === index) d.setAttribute("aria-current", "true");
+        else d.removeAttribute("aria-current");
+      });
+    };
+    var stop = function () { if (timer) { win.clearInterval(timer); timer = 0; } };
+    var start = function () {
+      stop();
+      if (reduced.matches || paused) return;
+      timer = win.setInterval(function () { go(index + 1); }, 4500);
+    };
+    root.addEventListener("pointerenter", function () { paused = true; stop(); });
+    root.addEventListener("pointerleave", function () { paused = false; start(); });
+    root.addEventListener("focusin", function () { paused = true; stop(); });
+    root.addEventListener("focusout", function () { paused = false; start(); });
+    if (prev) prev.addEventListener("click", function () { go(index - 1); start(); });
+    if (next) next.addEventListener("click", function () { go(index + 1); start(); });
+    dots.forEach(function (d, j) {
+      d.addEventListener("click", function () { go(j); start(); });
+    });
+    root.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowRight") { event.preventDefault(); go(index + 1); start(); }
+      if (event.key === "ArrowLeft") { event.preventDefault(); go(index - 1); start(); }
+    });
+    win.addEventListener("resize", function () { go(index); });
+    reduced.addEventListener("change", start);
+    go(0);
+    start();
+    return function () { stop(); };
+  }
+
   /* ---------- glue situs ---------- */
   function initNav() {
     var header = document.querySelector(".site-header");
@@ -553,5 +603,8 @@
         initWaveCarousel(wave, { gap: 0.028, falloff: 0.76, smallest: 0.55, snap: 500 });
       } catch (e) { /* kartu tengah tetap terlihat lewat CSS first-paint */ }
     }
+    document.querySelectorAll(".testi-carousel").forEach(function (c) {
+      try { initTestiCarousel(c); } catch (e) { /* kartu pertama tetap terlihat */ }
+    });
   });
 })();
